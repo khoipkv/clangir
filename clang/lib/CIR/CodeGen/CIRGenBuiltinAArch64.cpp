@@ -2670,7 +2670,15 @@ CIRGenFunction::buildAArch64BuiltinExpr(unsigned BuiltinID, const CallExpr *E,
   }
   case NEON::BI__builtin_neon_vld1_lane_v:
   case NEON::BI__builtin_neon_vld1q_lane_v: {
-    llvm_unreachable("NYI");
+  mlir::Value LoadedElem = builder.createAlignedLoad(Ops[0].getLoc(), VTy, Ops[0],
+                                                      PtrOp0.getAlignment());
+
+  mlir::Value laneIdxValue = Ops[2];
+  mlir::arith::ConstantOp laneIdxConstantOp = mlir::cast<mlir::arith::ConstantOp>(laneIdxValue.getDefiningOp());
+  int64_t laneIdx = laneIdxConstantOp.getValue().cast<mlir::IntegerAttr>().getInt();
+  
+  mlir::Value laneIdxAttr = builder.getI64IntegerAttr(laneIdx);
+  return builder.create<mlir::vector::InsertElementOp>(Ops[1].getLoc(), loadedElem, Ops[1], laneIdxAttr);
   }
   case NEON::BI__builtin_neon_vldap1_lane_s64:
   case NEON::BI__builtin_neon_vldap1q_lane_s64: {

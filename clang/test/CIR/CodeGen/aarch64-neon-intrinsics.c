@@ -9045,6 +9045,50 @@ int64x2_t test_vld1q_s64(int64_t const *a) {
   // LLVM:   [[TMP1:%.*]] = load <2 x i64>, ptr %0, align 8,
 }
 
+poly8x16_t test_vld1q_lane_p8(poly8_t const * ptr, poly8x16_t vec, int idx) {
+  return vld1q_lane_p8(ptr, vec, idx);
+}
+
+poly16x8_t test_vld1q_lane_p16(poly16_t const * ptr, poly16x8_t vec, int idx) {
+  return vld1q_lane_p16(ptr, vec, idx);
+}
+
+uint8x16_t test_vld1q_lane_u8(uint8_t const * ptr, uint8x16_t vec, int idx) {
+  return vld1q_lane_u8(ptr, vec, idx);
+}
+
+uint32x4_t test_vld1q_lane_u32(uint32_t const * ptr, uint32x4_t vec, int idx) {
+  return vld1q_lane_u32(ptr, vec, idx);
+}
+
+uint64x2_t test_vld1q_lane_u64(uint64_t const * ptr, uint64x2_t vec, int idx) {
+  return vld1q_lane_u64(ptr, vec, idx);
+}
+
+uint16x8_t test_vld1q_lane_u16(uint16_t const * ptr, uint16x8_t vec, int idx) {
+  return vld1q_lane_u16(ptr, vec, idx);
+}
+
+int8x16_t test_vld1q_lane_s8(int8_t const * ptr, int8x16_t vec, int idx) {
+  return vld1q_lane_s8(ptr, vec, idx);
+}
+
+int32x4_t test_vld1q_lane_s32(int32_t const * ptr, int32x4_t vec, int idx) {
+  return vld1q_lane_s32(ptr, vec, idx);
+}
+
+int64x2_t test_vld1q_lane_s64(int64_t const * ptr, int64x2_t vec, int idx) {
+  return vld1q_lane_s64(ptr, vec, idx);
+}
+
+int16x8_t test_vld1q_lane_s16(int16_t const * ptr, int16x8_t vec, int idx) {
+  return vld1q_lane_s16(ptr, vec, idx);
+}
+
+float32x4_t test_vld1q_lane_f32(float32_t const * ptr, float32x4_t vec, int idx) {
+  return vld1q_lane_f32(ptr, vec, idx);
+}
+
 // NYI-LABEL: @test_vld1q_f16(
 // NYI:   [[TMP2:%.*]] = load <8 x half>, ptr %a, align 2
 // NYI:   ret <8 x half> [[TMP2]]
